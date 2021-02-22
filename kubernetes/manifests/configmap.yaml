@@ -5,16 +5,10 @@ data:
     from updater.resources import DeploymentResource
 
     DEPLOYMENTS = [
-        DeploymentResource(organization="twistopayments",
-                           repository="eshop-landing-pages",
+        DeploymentResource(organization="vladmalynych",
+                           repository="image-updater-test",
                            tag_regex="^([0-9]+)$",
-                           deploy_name="eshop-landing-pages",
-                           namespace="default"),
-
-        DeploymentResource(organization="twistopayments",
-                           repository="twisto-pl-static",
-                           tag_regex="^([0-9]+)$",
-                           deploy_name="twisto-pl-static",
+                           deploy_name="image-updater-test",
                            namespace="default"),
     ]
 kind: ConfigMap
