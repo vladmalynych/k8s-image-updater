@@ -2,7 +2,7 @@
 
 ### Description:
 This application lists DockerHub tags, and compares them to currently deployed tags of k8s deployments.
-In case if new image exists, k8s deployment image will be updated and notification will be sent to Slack `#dev-release` channel.
+In case if new image exists, k8s deployment image will be updated and notification will be sent to Slack channel.
 
 ### Working hours
 CronJob is executed in a predefined time window:
