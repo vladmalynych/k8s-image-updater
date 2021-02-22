@@ -1,0 +1,39 @@
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+    name: k8s-image-updater
+    namespace: default
+    labels:
+        app: k8s-image-updater
+spec:
+    schedule: "*/20 8-17 * * 1-5" # UTC TZ
+    concurrencyPolicy: Forbid
+    successfulJobsHistoryLimit: 1
+    failedJobsHistoryLimit: 1
+    jobTemplate:
+        spec:
+            backoffLimit: 0
+            template:
+              spec:
+                serviceAccountName: k8s-pod-updater-service-account
+                imagePullSecrets:
+                    -   name: dockerhub
+                restartPolicy: Never
+                containers:
+                    -   name: k8s-image-updater
+                        image: vladmalynych/k8s-image-updater:v1
+                        envFrom:
+                            -   secretRef:
+                                    name: k8s-image-updater-secrets
+                        imagePullPolicy: IfNotPresent
+                        volumeMounts:
+                          - name: k8s-image-updater-cm
+                            mountPath: /app/updater/settings/
+                            subPath: conf.py
+                            readOnly: true
+                volumes:
+                  - name: k8s-image-updater-cm
+                    configMap:
+                      name: k8s-image-updater-cm
+                      defaultMode: 0600

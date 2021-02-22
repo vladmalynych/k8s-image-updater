@@ -1,0 +1,32 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+    name: k8s-image-updater-service-account
+    namespace: default
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+    name: k8s-image-updater-role
+    namespace: default
+rules:
+    -   apiGroups: ["*"]
+        resources: ["deployments"]
+        verbs: ["get", "list", "watch", "update", "patch"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+    name: k8s-image-updater-rolebinding
+    namespace: default
+roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: Role
+    name: k8s-image-updater-role
+subjects:
+    -   namespace: default
+        kind: ServiceAccount
+        name: k8s-image-updater-service-account

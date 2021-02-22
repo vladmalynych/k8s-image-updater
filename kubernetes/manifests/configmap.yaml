@@ -1,0 +1,22 @@
+apiVersion: v1
+data:
+  conf.py: |
+    # DeploymentResources that will be used during check
+    from updater.resources import DeploymentResource
+
+    DEPLOYMENTS = [
+        DeploymentResource(organization="twistopayments",
+                           repository="eshop-landing-pages",
+                           tag_regex="^([0-9]+)$",
+                           deploy_name="eshop-landing-pages",
+                           namespace="default"),
+
+        DeploymentResource(organization="twistopayments",
+                           repository="twisto-pl-static",
+                           tag_regex="^([0-9]+)$",
+                           deploy_name="twisto-pl-static",
+                           namespace="default"),
+    ]
+kind: ConfigMap
+metadata:
+  name: k8s-image-updater-cm
