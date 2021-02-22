@@ -15,7 +15,7 @@ def send_notification(title, color, text, footer):
     headers = {'Accept': 'application/json', 'Content-Type': 'application/json'}
     payload = {
         'channel': channel,
-        'username': 'k8s-pod-updater',
+        'username': 'k8s-image-updater',
         'icon_emoji': icon,
         'attachments': [
             {'fallback': title, 'color': color, 'title': title, 'text': text, 'footer': footer, 'ts': time.time()}

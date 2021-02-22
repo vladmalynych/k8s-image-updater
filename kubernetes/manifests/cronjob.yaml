@@ -16,7 +16,7 @@ spec:
             backoffLimit: 0
             template:
               spec:
-                serviceAccountName: k8s-pod-updater-service-account
+                serviceAccountName: k8s-image-updater-service-account
                 imagePullSecrets:
                     -   name: dockerhub
                 restartPolicy: Never

@@ -10,12 +10,12 @@ with open(join(dirname(__file__), 'requirements.txt')) as r:
     requirements = [l.strip() for l in r]
 
 setup(
-    name='k8s-pod-updater',
+    name='k8s-image-updater',
     packages=find_packages(),
-    # Create executable named k8s-pod-updater
+    # Create executable named k8s-image-updater
     entry_points={
         'console_scripts': [
-            'k8s-pod-updater = updater.main:main',
+            'k8s-image-updater = updater.main:main',
         ],
     },
     # Include requirements.txt

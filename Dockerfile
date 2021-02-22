@@ -11,4 +11,4 @@ RUN apt-get update && \
     python3 -m pip install --no-cache-dir --upgrade pip && \
     pip3 install --no-cache-dir -e app
 
-ENTRYPOINT k8s-pod-updater
+ENTRYPOINT k8s-image-updater
