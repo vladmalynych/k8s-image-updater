@@ -22,7 +22,7 @@ spec:
                 restartPolicy: Never
                 containers:
                     -   name: k8s-image-updater
-                        image: vladmalynych/k8s-image-updater:v1
+                        image: vladmalynych/k8s-image-updater:latest
                         envFrom:
                             -   secretRef:
                                     name: k8s-image-updater-secrets

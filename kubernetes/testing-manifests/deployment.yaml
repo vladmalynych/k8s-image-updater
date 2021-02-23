@@ -18,4 +18,4 @@ spec:
         spec:
             containers:
                 -   name: twisto-pl-static
-                    image: vladmalynych/image-updater-test:1
+                    image: vladmalynych/image-updater-test:v1
