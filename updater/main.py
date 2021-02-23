@@ -4,6 +4,7 @@ import logging
 from updater.api.dockerhub import DockerHub
 from updater.api.kube import Kube
 from updater.settings.conf import DEPLOYMENTS
+from updater.settings.settings import SLACK_HOOK, SLACK_NOTIFICATION_CHANNEL
 from updater.api.slack import send_notification
 LOG = logging.getLogger(__name__)
 
@@ -50,12 +51,15 @@ def main():
             LOG.info(f"Newer image available: [{dockerhub_image_num} > {kube_image_num}]")
             deployment.spec.template.spec.containers[0].image = dockerhub_image['full']
             kube.patch_deployment(deployment)
-            send_notification(title=f"Released: [{DEPLOYMENT.deploy_name} - {dockerhub_image['tag']}] :tada:",
-                              color="good",
-                              text=f":gear: {DEPLOYMENT.deploy_name}\n"
-                                   f"Previous image: `{kube_image['full']}`\n"
-                                   f"Deployed image: `{dockerhub_image['full']}`",
-                              footer="")
+            if not SLACK_HOOK or not SLACK_NOTIFICATION_CHANNEL:
+                LOG.info(f"Slack is not configured, skipping notification...")
+            else:
+                send_notification(title=f"Released: [{DEPLOYMENT.deploy_name} - {dockerhub_image['tag']}] :tada:",
+                                  color="good",
+                                  text=f":gear: {DEPLOYMENT.deploy_name}\n"
+                                       f"Previous image: `{kube_image['full']}`\n"
+                                       f"Deployed image: `{dockerhub_image['full']}`",
+                                  footer="")
         else:
             LOG.info(f"Nothing to deploy: [{dockerhub_image_num} <= {kube_image_num}]")
 
