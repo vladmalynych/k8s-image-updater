@@ -7,7 +7,7 @@ data:
     DEPLOYMENTS = [
         DeploymentResource(organization="vladmalynych",
                            repository="image-updater-test",
-                           tag_regex="^([0-9]+)$",
+                           tag_regex="^v([0-9]+)$",
                            deploy_name="image-updater-test",
                            namespace="default"),
     ]
