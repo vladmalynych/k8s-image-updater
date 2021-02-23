@@ -1,8 +1,8 @@
 import os
 
 # Slack settings (optional)
-SLACK_NOTIFICATION_CHANNEL = str(os.getenv('SLACK_NOTIFICATION_CHANNEL', None))
-SLACK_HOOK = str(os.getenv('SLACK_HOOK', None))
+SLACK_NOTIFICATION_CHANNEL = os.getenv('SLACK_NOTIFICATION_CHANNEL', None)
+SLACK_HOOK = os.getenv('SLACK_HOOK', None)
 
 # DockerHub settings
 DOCKER_HUB_USER = str(os.getenv('DOCKER_HUB_USER'))
