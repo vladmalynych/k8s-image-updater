@@ -29,7 +29,7 @@ spec:
                         imagePullPolicy: IfNotPresent
                         volumeMounts:
                           - name: k8s-image-updater-cm
-                            mountPath: /app/updater/settings/
+                            mountPath: /app/updater/settings/conf.py
                             subPath: conf.py
                             readOnly: true
                 volumes:
