@@ -1,0 +1,21 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: image-updater-test
+    namespace: default
+    labels:
+        app: image-updater-test
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: image-updater-test
+    template:
+        metadata:
+            labels:
+                app: image-updater-test
+        spec:
+            containers:
+                -   name: twisto-pl-static
+                    image: twistopayments/image-updater-test:1
